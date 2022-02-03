@@ -1,0 +1,65 @@
+* {
+    margin: 3px;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+}
+
+#app-main {
+    display: flex;
+}
+
+/* literal left side of the web page. contains search bar and search results. */
+#left-side {
+    flex: 1 0 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#search-place {
+    width: 65%;
+    height: 4vh;
+}
+
+#search-results {
+    background-color: lightblue;
+    margin: 10px;
+    width: 90%;
+    height: 90vh;
+    overflow: scroll;
+    border: 2px solid black;
+}
+
+/* literal right side of the page. contains description of result clicked on, images of the place, and a map */
+#right-side {
+    flex: 1 0 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#descr-div {
+    background-color: lightblue;
+    width: 90%;
+    overflow: scroll;
+    height: 10vh;
+    border: 2px solid black;
+}
+
+#place-img {
+    object-fit: cover;
+    width: 90%;
+    height: 41.5vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#map {
+    width: 90%;
+    height: 42vh;
+    border: 2px solid black;
+}
