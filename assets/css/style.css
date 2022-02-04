@@ -1,5 +1,11 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url('../fonts/OpenSans-Regular.ttf');
+} 
+
 * {
     margin: 3px;
+    font-family: OpenSans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
