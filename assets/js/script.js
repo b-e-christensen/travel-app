@@ -1,6 +1,11 @@
+// Init global vars for Google API
+let map;
+let service;
+let infowindow;
+let autocomplete;
+let attractionsAry = []
 
 // This is for the google places autocomplete 
-let autocomplete;
 function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('search-place'),
@@ -13,12 +18,13 @@ function initAutocomplete() {
 // Function to handle the search form submit
 function searchFormHandler(event) {
     event.preventDefault()
+    attractionsAry = []
     let place = autocomplete.getPlace()
+    // If invalid place
     if (!place.geometry) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
-    } else {
-        console.log(place)
-    }
+        return
+    } 
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
     document.getElementById('place-img').src = place.photos[0].getUrl()
@@ -26,44 +32,66 @@ function searchFormHandler(event) {
 }
 
 // https://developers.google.com/maps/documentation/javascript/places#place_search_requests init may and get nearby attractions
-let map;
-let service;
-let infowindow;
+// Inits the map
 function initialize(lat, lon) {
     let locationSearched = new google.maps.LatLng(lat, lon);
-
+    //Centers map to location searched
     map = new google.maps.Map(document.getElementById('map'), {
         center: locationSearched,
         zoom: 15
     });
-
+    // Below request for Places API search
     let request = {
         location: locationSearched,
         radius: '300',
-        query: 'attraction'
+        query: 'historical attraction' // tourist attraction
     };
-
+    // Calls places API
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, callback);
 }
 
+// Call back to go through attractions and add map placers as images
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            var place = results[i];
+        for (let i = 0; i < results.length; i++ | i > 20) {
+            let place = results[i];
             createPhotoMarker(results[i]);
-            // console.log(place)
         }
     }
 }
 
+// Function to get Wikipedia API details
+async function wikiAPIcall(placeName) {
+    let encName = encodeURIComponent(placeName)
+    let wikiResp = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=10&exlimit=1&titles=${encName}&explaintext=1&formatversion=2&format=json&origin=*`).then(response => {return response.json()})
+    if(wikiResp.query.pages[0].extract){
+        let text = wikiResp.query.pages[0].extract
+        return text
+    } else {
+        let text = `No details are available for ${placeName}`
+        return text
+    }
+}
+
+// function to create map markers with photos
 function createPhotoMarker(place) {
-    var photos = place.photos;
+    let photos = place.photos;
     if (!photos) {
         return;
     }
 
-    var marker = new google.maps.Marker({
+    let textDetails = wikiAPIcall(place.name)
+    // Creates a attraction object to push to array
+    let attractionObj = {
+        name: place.name,
+        text: textDetails, 
+        photo: place.photos[0].getUrl(),
+        geotag: place.geometry.location
+    }
+    attractionsAry.push(attractionObj)
+
+    let marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
         title: place.name,
