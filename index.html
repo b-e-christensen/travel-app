@@ -13,7 +13,10 @@
     </header>
 <main id="app-main">
     <div id="left-side">
+        <form action="#" id="search-place-form">
         <input type="text" id="search-place" placeholder="Search for a city">
+        <button type="submit" id="search-place-btn">Search</button>
+    </form>
 
         <div id="search-results">
         </div>
@@ -33,7 +36,9 @@
 
     </div>
 </main>
-    
-    <script src="./assets/js/script.js"></script>
+<!-- Due to callbacks our JS must load before Googles  -->
+<script src="./assets/js/script.js"></script>
+    <!-- Loads both maps and places google API / JS  https://developers.google.com/maps/documentation/javascript/places#place_details-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgSOGWQ3tE9D1y5UFwCsxbEHusEg2_dLA&libraries=places&callback=initAutocomplete"></script>
 </body>
 </html>
