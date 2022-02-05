@@ -85,7 +85,7 @@ async function wikiAPIcall(placeName) {
         // frame.setAttribute('src', `https://en.wikipedia.org/wiki/${placeName}`)
         // frame.id = 'wiki-frame'
         // document.getElementById("descr-div").appendChild(frame)
-        return "test"
+        return false
     }
 }
 
@@ -131,7 +131,7 @@ function setMarker(lati, long) {
 function attractionsSelected(event) {
     // TO DO
     const btnClicked = event.target
-    // Can access associated data in array via attractionsAry[btnClicked.getAttribute('data-index')]
+    // Can access associated data in array via attractionsAry[btnClicked.getAttribute('data-index')].text
 }
 
 // Function to write attractions to DOM
