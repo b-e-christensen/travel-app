@@ -60,7 +60,6 @@ function initialize(lat, lon) {
     // Calls places API
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, callback);
-    writeAtrractions()
 }
 
 // Call back to go through attractions and add map placers as images
@@ -70,6 +69,7 @@ function callback(results, status) {
             let place = results[i];
             createPhotoMarker(results[i]);
         }
+        writeAtrractions()
     }
 }
 
@@ -128,8 +128,11 @@ function setMarker(lati,long) {
 // Function to write attractions to DOM
 function writeAtrractions() {
     for (let index = 0; index < attractionsAry.length; index++) {
-        let itemEL = document.createElement('button')
-        itemEL.textContent = attractionsAry[index].name
+        let itemEL = document.createElement('div')
+        let itemBtn = document.createElement('button')
+        itemBtn.textContent = attractionsAry[index].name
+        itemEL.appendChild(itemBtn)
+        itemBtn.classList.add('attractions-btns')
         document.getElementById('search-results').appendChild(itemEL)
 
     }
