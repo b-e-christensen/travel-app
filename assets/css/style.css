@@ -4,7 +4,7 @@
 } 
 
 * {
-    margin: 3px;
+    margin:3px;
     font-family: OpenSans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -25,9 +25,35 @@ header {
     flex-direction: column;
 }
 
-#search-place {
-    width: 65%;
-    height: 4vh;
+/* properties for site as it will look on user's first visit to it (when they don't have anything in local storage) */
+#first-visit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #5de6de;
+    background-image: linear-gradient(315deg, #5de6de 0%, #b58ecc 74%);
+}
+
+/* currently on #first-visit div. will toggle off on first visit, then toggle on after search */
+.invisible {
+    display: none;
+}
+
+#search-place-form {
+    height: 4vh;  
+}
+
+/* centers the search bar on first visit as well as the p tag that will be displayed. Will need to be given to #search-place-from and then removed after search. */
+.first-visit {
+    z-index: 100;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    margin: auto; 
+    width: 150px; 
+    z-index: 100;
 }
 
 #search-results {
