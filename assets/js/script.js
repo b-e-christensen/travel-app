@@ -1,3 +1,8 @@
+if(localStorage.getItem('last-search') === null) {
+    document.getElementById('first-visit').classList.remove('invisible')
+    document.getElementById('search-place-form').classList.add('first-visit')
+}
+
 // Init global vars for Google API
 let map;
 let service;
@@ -25,6 +30,9 @@ function searchFormHandler(event) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
         return
     } 
+    localStorage.setItem('last-search', JSON.stringify(place))
+    document.getElementById('first-visit').classList.add('invisible')
+    document.getElementById('search-place-form').classList.remove('first-visit')
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
     document.getElementById('place-img').src = place.photos[0].getUrl()
