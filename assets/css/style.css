@@ -51,8 +51,27 @@ header {
 }
 
 #search-place-form {
-    height: 4vh;  
+    height: 14vh;
+    width: 90%;  
 }
+
+#search-place {
+    width: 95%;
+    padding: .5rem;
+}
+
+#search-place-btn {
+    margin-top: 0;
+    width: 98%;
+    padding: .5rem;
+    background-color: rgb(110, 196, 249);
+    border: none;
+}
+
+#search-place-btn:hover {
+    background-color: rgb(155, 210, 244);
+}
+
 
 /* centers the search bar on first visit as well as the p tag that will be displayed. Will need to be given to #search-place-from and then removed after search. */
 .first-visit {
@@ -65,6 +84,27 @@ header {
     margin: auto; 
     width: 150px; 
     z-index: 100;
+}
+
+
+.first-visit #search-place{
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20rem;
+    padding: 1rem;
+    font-size: 1rem;
+    display: inline;
+}
+
+.first-visit #search-place-btn {
+    margin-left: 40%;
+    margin-right: 40%;
+    background-color: rgb(110, 196, 249);
+    width: 22rem;
+    padding: 1rem;
+    font-size: 1rem;
+    display: inline;
+    border: none;
 }
 
 #search-results {
