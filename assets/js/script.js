@@ -81,10 +81,6 @@ async function wikiAPIcall(placeName) {
         let text = wikiResp.query.pages[0].extract
         return text
     } else {
-        // let frame = document.createElement('iframe')
-        // frame.setAttribute('src', `https://en.wikipedia.org/wiki/${placeName}`)
-        // frame.id = 'wiki-frame'
-        // document.getElementById("descr-div").appendChild(frame)
         return false
     }
 }
@@ -130,8 +126,19 @@ function setMarker(lati, long) {
 // Function handling clicks of populated attractions 
 function attractionsSelected(event) {
     // TO DO
+    console.log(attractionsAry);
     const btnClicked = event.target
-    // Can access associated data in array via attractionsAry[btnClicked.getAttribute('data-index')].text
+    let attraction = attractionsAry[btnClicked.getAttribute('data-index')]
+    if (!attraction.text){
+         document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. Click here to learn more about it.`
+         document.getElementById("place-descr").addEventListener('click', wikiIFrame)
+         function wikiIFrame() {
+        let frame = document.createElement('iframe')
+        frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
+        frame.id = 'wiki-frame'
+        document.querySelector("body").appendChild(frame)
+}
+    }
 }
 
 // Function to write attractions to DOM
@@ -146,6 +153,7 @@ function writeAtrractions(attractionObj) {
     document.getElementById('search-results').appendChild(itemEL)
     itemBtn.addEventListener('click', attractionsSelected)
 }
+
 
 // Event Listener for search form
 document.getElementById('search-place-form').addEventListener('submit', searchFormHandler)
