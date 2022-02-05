@@ -56,7 +56,6 @@ header {
 
 /* centers the search bar on first visit as well as the p tag that will be displayed. Will need to be given to #search-place-from and then removed after search. */
 .first-visit {
-    z-index: 100;
     position: absolute;
     left: 0; 
     right: 0; 
@@ -87,9 +86,21 @@ header {
 #descr-div {
     background-color: lightblue;
     width: 90%;
-    overflow: scroll;
     height: 10vh;
     border: 2px solid black;
+    margin: 0;
+}
+
+#wiki-frame {
+    z-index: 100;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    margin: auto; 
+    width: 50%; 
+    height: 50%;
 }
 
 #place-img {
