@@ -69,8 +69,10 @@ async function wikiAPIcall(placeName) {
         let text = wikiResp.query.pages[0].extract
         return text
     } else {
-        let text = `No details are available for ${placeName}`
-        return text
+        let frame = document.createElement('iframe')
+        frame.setAttribute('src', `https://en.wikipedia.org/wiki/${placeName}`)
+        frame.id = 'wiki-frame'
+        document.getElementById("descr-div").appendChild(frame)
     }
 }
 
@@ -91,6 +93,7 @@ async function createPhotoMarker(place) {
     }
 
     attractionsAry.push(attractionObj)
+    console.log(attractionsAry)
 
     let marker = new google.maps.Marker({
         map: map,
@@ -112,3 +115,4 @@ function setMarker(lati,long) {
 
 // Event Listener for search form
 document.getElementById('search-place-form').addEventListener('submit', searchFormHandler)
+
