@@ -27,7 +27,10 @@ function searchFormHandler(event) {
     } 
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
-    document.getElementById('place-img').src = place.photos[0].getUrl()
+
+    let imgEl = document.getElementById('place-img')
+    imgEl.src = place.photos[0].getUrl()
+
     initialize(lat, lon)
 }
 
@@ -49,6 +52,7 @@ function initialize(lat, lon) {
     // Calls places API
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, callback);
+    writeAtrractions()
 }
 
 // Call back to go through attractions and add map placers as images
@@ -111,6 +115,16 @@ function setMarker(lati,long) {
         title: "Hello World!",
       });
       marker.setMap(map);
+}
+
+// Function to write attractions to DOM
+function writeAtrractions() {
+    for (let index = 0; index < attractionsAry.length; index++) {
+        let itemEL = document.createElement('button')
+        itemEL.textContent = attractionsAry[index].name
+        document.getElementById('search-results').appendChild(itemEL)
+
+    }
 }
 
 // Event Listener for search form
