@@ -54,7 +54,7 @@ function initialize(lat, lon) {
 // Call back to go through attractions and add map placers as images
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (let i = 0; i < results.length; i++ | i > 20) {
+        for (let i = 0; i < results.length; i++ && i < 20) {
             let place = results[i];
             createPhotoMarker(results[i]);
         }
@@ -75,13 +75,13 @@ async function wikiAPIcall(placeName) {
 }
 
 // function to create map markers with photos
-function createPhotoMarker(place) {
-    let photos = place.photos;
+async function createPhotoMarker(place) {
+    let photos = await place.photos;
     if (!photos) {
         return;
     }
 
-    let textDetails = wikiAPIcall(place.name)
+    let textDetails = await wikiAPIcall(place.name)
     // Creates a attraction object to push to array
     let attractionObj = {
         name: place.name,
@@ -89,6 +89,7 @@ function createPhotoMarker(place) {
         photo: place.photos[0].getUrl(),
         geotag: place.geometry.location
     }
+
     attractionsAry.push(attractionObj)
 
     let marker = new google.maps.Marker({
