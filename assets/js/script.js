@@ -132,14 +132,18 @@ function attractionsSelected(event) {
     if (!attraction.text){
          document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. Click here to learn more about it.`
          document.getElementById("place-descr").addEventListener('click', wikiIFrame)
-         function wikiIFrame() {
+    function wikiIFrame() {
         let frame = document.createElement('iframe')
         frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
         frame.id = 'wiki-frame'
+        document.getElementById('frame-closer').classList.remove('invisible')
+        document.querySelector('main').classList.add('blur')
         document.querySelector("body").appendChild(frame)
+} 
+    }// else attraction.text = #place-descr
 }
-    }
-}
+
+
 
 // Function to write attractions to DOM
 function writeAtrractions(attractionObj) {
@@ -154,7 +158,11 @@ function writeAtrractions(attractionObj) {
     itemBtn.addEventListener('click', attractionsSelected)
 }
 
+function removeFrame() {
+    document.querySelector('body').removeChild(document.getElementById('wiki-frame'))
+    document.getElementById('frame-closer').classList.add('invisible')
+    document.querySelector('main').classList.remove('blur')
+  }
 
 // Event Listener for search form
 document.getElementById('search-place-form').addEventListener('submit', searchFormHandler)
-

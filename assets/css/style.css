@@ -13,6 +13,16 @@ header {
     background-color: #333;
 }
 
+#frame-closer {
+    position: absolute;
+    margin-left: 75%;
+    margin-top: 10%;
+    background-color: lightgray;
+    z-index: 120;
+    width: 25px;
+    height: 25px;
+}
+
 
 .attractions-btns {
     width: 100%;
@@ -26,6 +36,11 @@ header {
 
 #app-main {
     display: flex;
+}
+
+.blur {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
 }
 
 /* literal left side of the web page. contains search bar and search results. */
@@ -133,6 +148,19 @@ header {
 
 #wiki-frame {
     z-index: 100;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    margin: auto; 
+    width: 50%; 
+    height: 50%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+#wiki-frame-button {
+    z-index: 101;
     position: absolute;
     left: 0; 
     right: 0; 
