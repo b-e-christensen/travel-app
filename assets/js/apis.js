@@ -101,9 +101,9 @@ async function createPhotoMarker(place) {
         photo: place.photos[0].getUrl(),
         geotag: place.geometry.location
     }
-
+    // Creates an array of attractions for later use 
     attractionsAry.push(attractionObj)
-
+    // Calls func to write attractions to DOM
     writeAtrractions(attractionObj)
 
     let marker = new google.maps.Marker({
@@ -124,32 +124,39 @@ function setMarker(lati, long) {
     marker.setMap(map);
 }
 
-// Function handling clicks of populated attractions 
-function attractionsSelected(event) {
-    // TO DO
-    console.log(attractionsAry);
-    const btnClicked = event.target
-    let attraction = attractionsAry[btnClicked.getAttribute('data-index')]
-    // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
+// Function to write attraction props to DOM 
+function writeAtrProps(attraction) {
     document.getElementById('place-img').src = attraction.photo
-    if (!attraction.text){
+    if (!attraction.text) {
         let aTag = document.createElement('a')
         aTag.setAttribute('href', '#')
         aTag.textContent = 'click here.'
         document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. To learn more about it `
         aTag.addEventListener('click', wikiIFrame)
         document.getElementById("place-descr").appendChild(aTag)
-    function wikiIFrame() {
-        let frame = document.createElement('iframe')
-        frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
-        frame.id = 'wiki-frame'
-        document.getElementById('frame-closer').classList.remove('invisible')
-        document.querySelector('main').classList.add('blur')
-        document.querySelector("body").appendChild(frame)
-} 
+        function wikiIFrame() {
+            let frame = document.createElement('iframe')
+            frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
+            frame.id = 'wiki-frame'
+            document.getElementById('frame-closer').classList.remove('invisible')
+            document.querySelector('main').classList.add('blur')
+            document.querySelector("body").appendChild(frame)
+        }
     } else {
         document.getElementById('place-descr').textContent = attraction.text
+    }
 }
+
+// Function handling clicks of populated attractions 
+function attractionsSelected(event) {
+    // TO DO
+    console.log(attractionsAry);
+    const btnClicked = event.target
+    let attraction = attractionsAry[btnClicked.getAttribute('data-index')]
+    // Adds the last clicked attraction to localStorage
+    localStorage.setItem('attrHistory', JSON.stringify(attraction))
+    // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
+    writeAtrProps(attraction)
 }
 
 
@@ -171,4 +178,4 @@ function removeFrame() {
     document.querySelector('body').removeChild(document.getElementById('wiki-frame'))
     document.getElementById('frame-closer').classList.add('invisible')
     document.querySelector('main').classList.remove('blur')
-  }
+}

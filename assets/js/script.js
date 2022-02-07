@@ -18,5 +18,9 @@ else {
      writeLastSearch(lastSearched)
 }
 
+if(localStorage.attrHistory){
+    let attractionSearched = JSON.parse(localStorage.attrHistory)
+    writeAtrProps(attractionSearched)
+}
 
 document.getElementById('search-place-form').addEventListener('submit', searchFormHandler)
