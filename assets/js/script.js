@@ -129,9 +129,15 @@ function attractionsSelected(event) {
     console.log(attractionsAry);
     const btnClicked = event.target
     let attraction = attractionsAry[btnClicked.getAttribute('data-index')]
+    // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
+    document.getElementById('place-img').src = attraction.photo
     if (!attraction.text){
-         document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. Click here to learn more about it.`
-         document.getElementById("place-descr").addEventListener('click', wikiIFrame)
+        let aTag = document.createElement('a')
+        aTag.setAttribute('href', '#')
+        aTag.textContent = 'click here.'
+        document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. To learn more about it `
+        aTag.addEventListener('click', wikiIFrame)
+        document.getElementById("place-descr").appendChild(aTag)
     function wikiIFrame() {
         let frame = document.createElement('iframe')
         frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
@@ -140,8 +146,13 @@ function attractionsSelected(event) {
         document.querySelector('main').classList.add('blur')
         document.querySelector("body").appendChild(frame)
 } 
-    }// else attraction.text = #place-descr
+    } else {
+        document.getElementById('place-descr').textContent = attraction.text
 }
+}
+
+
+
 
 
 
