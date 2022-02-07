@@ -25,6 +25,7 @@ function initAutocomplete() {
 function searchFormHandler(event) {
     event.preventDefault()
     attractionsAry = []
+    document.querySelector('body').setAttribute('style', 'animation: none')
     let place = autocomplete.getPlace()
     // If invalid place
     if (!place.geometry) {
