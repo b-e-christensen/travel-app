@@ -127,13 +127,16 @@ function setMarker(lati, long) {
 // Function to write attraction props to DOM 
 function writeAtrProps(attraction) {
     document.getElementById('place-img').src = attraction.photo
+    
+    map.setCenter(attraction.geotag);
+
     if (!attraction.text) {
         let aTag = document.createElement('a')
         aTag.setAttribute('href', '#')
         aTag.textContent = 'click here.'
         document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. To learn more about it `
         aTag.addEventListener('click', wikiIFrame)
-        document.getElementById("place-descr").appendChild(aTag)
+                document.getElementById("place-descr").appendChild(aTag)
         function wikiIFrame() {
             let frame = document.createElement('iframe')
             frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
@@ -147,6 +150,7 @@ function writeAtrProps(attraction) {
     }
 }
 
+
 // Function handling clicks of populated attractions 
 function attractionsSelected(event) {
     // TO DO
@@ -157,6 +161,7 @@ function attractionsSelected(event) {
     localStorage.setItem('attrHistory', JSON.stringify(attraction))
     // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
     writeAtrProps(attraction)
+    
 }
 
 
