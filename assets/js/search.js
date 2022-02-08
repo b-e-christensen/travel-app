@@ -13,10 +13,10 @@ function initFormHandler(event) {
     checkforRedirect()
 }
 // Will redirect to main page if search has been performed 
-function checkforRedirect(){
-    if (localStorage.getItem('last-search') ||  localStorage.attrHistory) {
+function checkforRedirect() {
+    if (localStorage.getItem('last-search') || localStorage.attrHistory) {
         window.location.replace('../index.html')
-    } 
+    }
 }
 checkforRedirect()
 

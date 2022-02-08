@@ -39,8 +39,8 @@ function searchFormHandler(event) {
     // document.getElementById('first-visit').classList.add('invisible')
     // document.getElementById('search-place-form').classList.remove('first-visit')
     // writes image to DOM from search API
-    let imgEl = document.getElementById('place-img')
-    imgEl.src = place.photos[0].getUrl()
+    // let imgEl = document.getElementById('place-img')
+    // imgEl.src = place.photos[0].getUrl()
     // Get lat and lng send to map init 
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
@@ -72,7 +72,6 @@ function initialize(lat, lon) {
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++ && i < 20) {
-            let place = results[i];
             createPhotoMarker(results[i]);
         }
     }
@@ -117,31 +116,22 @@ async function createPhotoMarker(place) {
         icon: photos[0].getUrl({ maxWidth: 35, maxHeight: 35 })
     });
 }
-//  Function to set a marker UNTESTED
-function setMarker(lati, long) {
-    const myLatLng = { lat: lati, lng: long };
-    new google.maps.Marker({
-        position: myLatLng,
-        map,
-        title: "Hello World!"
-    });
-    marker.setMap(map);
-}
 
 // Function to write attraction props to DOM 
-function writeAtrProps(attraction, indexValue) {
+function writeAtrProps(attraction) {
     document.querySelector('img').remove()
     imgEl = document.createElement('img')
     imgEl.src = attraction.photo
     imgEl.classList.add('place-img')
-    document.getElementById('search-results').children[indexValue].after(imgEl)
+    console.log(attraction)
+    document.getElementById('search-results').children[attraction.iValue].after(imgEl)
     if (!attraction.text) {
         let aTag = document.createElement('a')
         aTag.setAttribute('href', '#')
         aTag.textContent = 'click here.'
         document.getElementById("place-descr").textContent = `Details for ${attraction.name} were not found. To learn more about it `
         aTag.addEventListener('click', wikiIFrame)
-                document.getElementById("place-descr").appendChild(aTag)
+        document.getElementById("place-descr").appendChild(aTag)
         function wikiIFrame() {
             let frame = document.createElement('iframe')
             frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
@@ -158,15 +148,14 @@ function writeAtrProps(attraction, indexValue) {
 
 // Function handling clicks of populated attractions 
 function attractionsSelected(event) {
-    // TO DO
-    console.log(attractionsAry);
     const btnClicked = event.target
     const indexValue = btnClicked.getAttribute('data-index')
     let attraction = attractionsAry[indexValue]
+    attraction.iValue = indexValue
     // Adds the last clicked attraction to localStorage
     localStorage.setItem('attrHistory', JSON.stringify(attraction))
     // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
-    writeAtrProps(attraction, indexValue)
+    writeAtrProps(attraction)
 }
 
 
