@@ -129,6 +129,7 @@ function setMarker(lati, long) {
 
 // Function to write attraction props to DOM 
 function writeAtrProps(attraction) {
+    map.setCenter(attraction.geotag);
     document.getElementById('place-img').src = attraction.photo
     if (!attraction.text) {
         let aTag = document.createElement('a')
