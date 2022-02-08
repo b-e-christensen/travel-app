@@ -8,6 +8,7 @@ let attractionIndex = 0
 
 // This is for the google places autocomplete 
 function initAutocomplete() {
+    
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('search-place'),
         {
@@ -19,7 +20,10 @@ function initAutocomplete() {
 // Function to handle the search form submit
 function searchFormHandler(event) {
     event.preventDefault()
+    // Clear old search
     attractionsAry = []
+    attractionIndex = 0
+    document.getElementById('search-results').innerHTML = ""
     document.querySelector('body').setAttribute('style', 'animation: none')
     let place = autocomplete.getPlace()
     // If invalid place
@@ -32,8 +36,8 @@ function searchFormHandler(event) {
     lastSrc.pic = place.photos[0].getUrl()
     localStorage.setItem('last-search', JSON.stringify(lastSrc))
     // Show Divs and hide first visit 
-    document.getElementById('first-visit').classList.add('invisible')
-    document.getElementById('search-place-form').classList.remove('first-visit')
+    // document.getElementById('first-visit').classList.add('invisible')
+    // document.getElementById('search-place-form').classList.remove('first-visit')
     // writes image to DOM from search API
     let imgEl = document.getElementById('place-img')
     imgEl.src = place.photos[0].getUrl()
@@ -119,17 +123,18 @@ function setMarker(lati, long) {
     new google.maps.Marker({
         position: myLatLng,
         map,
-        title: "Hello World!",
+        title: "Hello World!"
     });
     marker.setMap(map);
 }
 
 // Function to write attraction props to DOM 
-function writeAtrProps(attraction) {
-    document.getElementById('place-img').src = attraction.photo
-    
-    map.setCenter(attraction.geotag);
-
+function writeAtrProps(attraction, indexValue) {
+    document.querySelector('img').remove()
+    imgEl = document.createElement('img')
+    imgEl.src = attraction.photo
+    imgEl.classList.add('place-img')
+    document.getElementById('search-results').children[indexValue].after(imgEl)
     if (!attraction.text) {
         let aTag = document.createElement('a')
         aTag.setAttribute('href', '#')
@@ -156,12 +161,12 @@ function attractionsSelected(event) {
     // TO DO
     console.log(attractionsAry);
     const btnClicked = event.target
-    let attraction = attractionsAry[btnClicked.getAttribute('data-index')]
+    const indexValue = btnClicked.getAttribute('data-index')
+    let attraction = attractionsAry[indexValue]
     // Adds the last clicked attraction to localStorage
     localStorage.setItem('attrHistory', JSON.stringify(attraction))
     // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
-    writeAtrProps(attraction)
-    
+    writeAtrProps(attraction, indexValue)
 }
 
 
