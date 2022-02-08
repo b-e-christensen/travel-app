@@ -12,39 +12,39 @@
 
 <body>
     <header>
-        <h1><i>Travel far.</i></h1>
-        <h1><i>Travel still.</i></h1>
+        <h1>Travel far. <br> Travel still.</h1>
         <p>Find your next destination today.</p>
     </header>
     
     <button id="frame-closer" class="invisible" onclick="top.window.removeFrame();">X</button>
     <main id="app-main">
-        <div id="first-visit" class="invisible">
-            <div id="app-descr" class="first-visit">
-                <p>App Description Will go here</p>
-            </div>
+        <div id="left-column">
         </div>
-        <div id="left-side">
+        <div id="main-column">
             <form action="#" id="search-place-form">
                 <input type="text" id="search-place" placeholder="Search for a city">
                 <button type="submit" id="search-place-btn">Search</button>
             </form>
-
-            <div id="search-results">
-            </div>
-        </div>
-
-        <div id="right-side">
+        <div id="flex-row">
             <div id="descr-div">
                 <p id="place-descr">Information on attractions will display here!</p>
             </div>
+            <div id="search-results">
+            </div>
 
+        </div>
+            
+ 
             <div id="img-div">
                 <img id="place-img">
             </div>
             
             <div id="map">
-            </div>
+            </div> 
+            
+            
+        </div>
+        <div id="right-column">
         </div>
     </main>
     <!-- Due to callbacks our JS must load before Googles  -->
