@@ -8,19 +8,14 @@ function writeLastSearch(lastSearched) {
     initialize(lat, lon)
 }
 
-// if (localStorage.getItem('last-search') === null) {
-//     document.getElementById('first-visit').classList.remove('invisible')
-//     document.getElementById('search-place-form').classList.add('first-visit')
-// } 
-// else {
-//     // If the local storage object exists write it to DOM
-//      let lastSearched = JSON.parse(localStorage.getItem('last-search'))
-//      writeLastSearch(lastSearched)
-// }
+if (localStorage.getItem('last-search')) {
+    // If the local storage object exists write it to DOM
+    let lastSearched = JSON.parse(localStorage.getItem('last-search'))
+    writeLastSearch(lastSearched)
+} 
+else {
+    window.location.replace('./pages/search.html')
+}
 
-// if(localStorage.attrHistory){
-//     let attractionSearched = JSON.parse(localStorage.attrHistory)
-//     writeAtrProps(attractionSearched)
-// }
 
 document.getElementById('search-place-form').addEventListener('submit', searchFormHandler)
