@@ -20,7 +20,10 @@ function initAutocomplete() {
 // Function to handle the search form submit
 function searchFormHandler(event) {
     event.preventDefault()
+    // Clear old search
     attractionsAry = []
+    attractionIndex = 0
+    document.getElementById('search-results').innerHTML = ""
     document.querySelector('body').setAttribute('style', 'animation: none')
     let place = autocomplete.getPlace()
     // If invalid place
