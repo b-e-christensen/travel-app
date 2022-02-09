@@ -8,7 +8,6 @@ let attractionIndex = 0
 
 // This is for the google places autocomplete 
 function initAutocomplete() {
-    
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('search-place'),
         {
@@ -17,8 +16,16 @@ function initAutocomplete() {
         })
 }
 
+// Function will write Parent location e.g., Denver Wikipedia info if available  
+async function writeCityWikiData(place) {
+    let wikiInfo = await wikiAPIcall(place.name)
+    if(wikiInfo && wikiInfo.length > 1) {
+        document.getElementById('place-descr').textContent = wikiInfo
+    }
+}
+
 // Function to handle the search form submit
-function searchFormHandler(event) {
+async function searchFormHandler(event) {
     event.preventDefault()
     // Clear old search
     attractionsAry = []
@@ -31,7 +38,7 @@ function searchFormHandler(event) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
         return
     }
-    // Format and add search to Localstorage 
+    // Format and add search to localStorage 
     let lastSrc = place
     lastSrc.pic = place.photos[0].getUrl()
     localStorage.setItem('last-search', JSON.stringify(lastSrc))
@@ -41,6 +48,7 @@ function searchFormHandler(event) {
     // writes image to DOM from search API
     // let imgEl = document.getElementById('place-img')
     // imgEl.src = place.photos[0].getUrl()
+    writeCityWikiData(place)
     // Get lat and lng send to map init 
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
@@ -61,7 +69,7 @@ function initialize(lat, lon) {
     let request = {
         location: locationSearched,
         radius: '300',
-        query: 'historical attraction' // tourist attraction
+        query: 'historical attraction'
     };
     // Calls places API
     service = new google.maps.places.PlacesService(map);
@@ -107,7 +115,7 @@ async function createPhotoMarker(place) {
     // Creates an array of attractions for later use 
     attractionsAry.push(attractionObj)
     // Calls func to write attractions to DOM
-    writeAtrractions(attractionObj)
+    writeAtrractions(attractionObj, place)
 
     let marker = new google.maps.Marker({
         map: map,
@@ -162,7 +170,7 @@ function attractionsSelected(event) {
 
 
 // Function to write attractions to DOM
-function writeAtrractions(attractionObj) {
+function writeAtrractions(attractionObj, place) {
     // Create Div and Button to add to DOM
     let itemEL = document.createElement('div')
     let itemBtn = document.createElement('button')
