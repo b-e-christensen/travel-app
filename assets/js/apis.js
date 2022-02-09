@@ -24,7 +24,7 @@ function searchFormHandler(event) {
     attractionsAry = []
     attractionIndex = 0
     document.getElementById('search-results').innerHTML = ""
-    document.querySelector('body').setAttribute('style', 'animation: none')
+    // document.querySelector('body').setAttribute('style', 'animation: none')
     let place = autocomplete.getPlace()
     // If invalid place
     if (!place.geometry) {
