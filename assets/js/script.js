@@ -1,7 +1,7 @@
 if (localStorage.getItem('last-search') === null) {
     document.getElementById('first-visit').classList.remove('invisible')
     document.getElementById('search-place-form').classList.add('first-visit')
-}
+} 
 
 // Init global vars for Google API
 let map;
