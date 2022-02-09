@@ -12,6 +12,7 @@ if (localStorage.getItem('last-search')) {
     // If the local storage object exists write it to DOM
     let lastSearched = JSON.parse(localStorage.getItem('last-search'))
     writeLastSearch(lastSearched)
+    writeCityWikiData(lastSearched)
 } 
 else {
     window.location.replace('./pages/search.html')
