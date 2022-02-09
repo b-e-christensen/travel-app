@@ -1,0 +1,39 @@
+body {
+    height: 100vh;
+}
+
+
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#landing-info {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 4px lightgrey solid;
+    border-radius: 10px;
+}
+
+#about-us {
+    text-align: center;
+    margin: 10px;
+    font-size: 15px;
+}
+
+#first-visit-search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
