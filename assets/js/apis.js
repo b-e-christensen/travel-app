@@ -119,7 +119,9 @@ async function createPhotoMarker(place) {
 
 // Function to write attraction props to DOM 
 function writeAtrProps(attraction) {
-    document.querySelector('img').remove()
+    document.querySelectorAll('.place-img').forEach(img => {
+    img.remove();
+    })
     imgEl = document.createElement('img')
     imgEl.src = attraction.photo
     imgEl.classList.add('place-img')
