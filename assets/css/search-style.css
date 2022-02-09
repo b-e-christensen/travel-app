@@ -1,8 +1,10 @@
 body {
     height: 100vh;
+    background-image: url('../images/window.jpg');
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
-
-
 
 main {
     width: 100%;
@@ -13,14 +15,24 @@ main {
 }
 
 #landing-info {
-    width: 50%;
-    height: 80%;
+    width: 42%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     border: 4px lightgrey solid;
     border-radius: 10px;
+    /* background-color: rgb(255, 255, 255, 0.8); */
+}
+
+h1 {
+    margin: 10px;
+    border-bottom: 4px lightgray solid;
+}
+
+p {
+    margin: 10px;
 }
 
 #about-us {
