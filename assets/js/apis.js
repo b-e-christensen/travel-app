@@ -16,7 +16,7 @@ function initAutocomplete() {
         })
 }
 
-// Function will write Parent location e.g., Denver Wikipedia info if available  
+// Function will write Parent location e.g., Denver Wikipedia info if available
 async function writeCityWikiData(place) {
     let wikiInfo = await wikiAPIcall(place.name)
     if(wikiInfo && wikiInfo.length > 1) {
@@ -31,7 +31,7 @@ async function searchFormHandler(event) {
     attractionsAry = []
     attractionIndex = 0
     document.getElementById('search-results').innerHTML = ""
-    // document.querySelector('body').setAttribute('style', 'animation: none')
+
     let place = autocomplete.getPlace()
     // If invalid place
     if (!place.geometry) {
@@ -43,11 +43,6 @@ async function searchFormHandler(event) {
     lastSrc.pic = place.photos[0].getUrl()
     localStorage.setItem('last-search', JSON.stringify(lastSrc))
     // Show Divs and hide first visit 
-    // document.getElementById('first-visit').classList.add('invisible')
-    // document.getElementById('search-place-form').classList.remove('first-visit')
-    // writes image to DOM from search API
-    // let imgEl = document.getElementById('place-img')
-    // imgEl.src = place.photos[0].getUrl()
     writeCityWikiData(place)
     // Get lat and lng send to map init 
     let lat = place.geometry.location.lat()
@@ -152,7 +147,6 @@ function writeAtrProps(attraction) {
             button.id = 'wiki-frame-btn'
             button.addEventListener('click', top.window.removeFrame)
             button.textContent = 'X'
-            // document.getElementById('frame-closer').classList.remove('invisible')
             document.querySelector('main').classList.add('blur')
             document.querySelector("body").appendChild(div)
             div.appendChild(frame)
@@ -169,10 +163,10 @@ function attractionsSelected(event) {
     const btnClicked = event.target
     const indexValue = btnClicked.getAttribute('data-index')
     let attraction = attractionsAry[indexValue]
+    map.setCenter(attraction.geotag)
     attraction.iValue = indexValue
     // Adds the last clicked attraction to localStorage
     localStorage.setItem('attrHistory', JSON.stringify(attraction))
-    // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
     writeAtrProps(attraction)
 }
 
@@ -193,6 +187,5 @@ function writeAtrractions(attractionObj, place) {
 
 function removeFrame() {
     document.querySelector('body').removeChild(document.getElementById('wiki-div'))
-    // document.getElementById('frame-closer').classList.add('invisible')
     document.querySelector('main').classList.remove('blur')
 }
