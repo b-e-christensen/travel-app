@@ -16,7 +16,7 @@ function initAutocomplete() {
         })
 }
 
-// Function will write Parent location e.g., Denver Wikipedia info if available  
+// Function will write Parent location e.g., Denver Wikipedia info if available
 async function writeCityWikiData(place) {
     let wikiInfo = await wikiAPIcall(place.name)
     if(wikiInfo && wikiInfo.length > 1) {
@@ -31,7 +31,7 @@ async function searchFormHandler(event) {
     attractionsAry = []
     attractionIndex = 0
     document.getElementById('search-results').innerHTML = ""
-    // document.querySelector('body').setAttribute('style', 'animation: none')
+
     let place = autocomplete.getPlace()
     // If invalid place
     if (!place.geometry) {
@@ -42,6 +42,7 @@ async function searchFormHandler(event) {
     let lastSrc = place
     lastSrc.pic = place.photos[0].getUrl()
     localStorage.setItem('last-search', JSON.stringify(lastSrc))
+    // Show Divs and hide first visit 
     writeCityWikiData(place)
     // Get lat and lng send to map init 
     let lat = place.geometry.location.lat()
@@ -161,6 +162,7 @@ function attractionsSelected(event) {
     const btnClicked = event.target
     const indexValue = btnClicked.getAttribute('data-index')
     let attraction = attractionsAry[indexValue]
+    map.setCenter(attraction.geotag)
     attraction.iValue = indexValue
     // Adds the last clicked attraction to localStorage
     localStorage.setItem('attrHistory', JSON.stringify(attraction))
