@@ -8,14 +8,18 @@ Still travel is a one stop visit for finding your next vacation destination. For
 
 * Upon first visit users will be greeted with a landing page that introduces them to the concept of the app and a minimalized UI -- just a search bar -- to ease them into the experience of the app. 
 <br>
-<br>
+
+
 ![image of landing page](./assets/images/landing-page.png)
+
 <br>
-<br>
+
 * After their first search, the information of the respective city will be brought up. 
+
 <br>
-<br>
+
 ![image of main app](./assets/images/main-page.png)
+
 <br>
 <br>
 * In this instance the user has searched for Berlin and we can see that some general information on the city, a map, and a list of attractions is generated. The user can click any of these attraction buttons and have an updated description of that place (if one isn't available through the Wikipedia text content API being used, a link to a relevant wikipedia article is put in it's place), an image of it placed below the button, and the recentering of the map onto the location of that attraction.
