@@ -17,27 +17,6 @@ header {
     border-bottom: black 2px solid;
 } 
 
-#frame-closer {
-    position: absolute;
-    margin-left: 75%;
-    margin-top: 10%;
-    background-color: lightgray;
-    z-index: 120;
-    width: 25px;
-    height: 25px;
-}
-
-.attractions-btns {
-    /* width: fit-content; */
-    width: 25rem;
-    padding: 1rem;
-    margin-top: .2rem;
-    margin-bottom: .2rem;
-    font-size: 1rem;
-    text-align: center;
-    background-color: rgb(255, 255, 255, 0.5);
-}
-
 #app-main {
     display: flex;
     justify-content: space-between;
@@ -71,16 +50,10 @@ header {
     margin-left: 10px;
 }
 
-
-
+/* class added to main-app when wiki iframe is generated */
 .blur {
     filter: blur(5px);
     -webkit-filter: blur(5px);
-}
-
-/* currently on #first-visit div. will toggle off on first visit, then toggle on after search */
-.invisible {
-    display: none;
 }
 
 #search-place-form {
@@ -116,24 +89,9 @@ header {
     justify-content: center;
 }
 
-#search-results {
-    flex: 1 0 60%;
-    margin: 10px;
-    width: fit-content;
-    height: 90vh;
-    overflow: auto;
-    /* border: 2px solid black; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: 45rem;
-}
-
 #descr-and-map-container {
     flex: 1 0 40%;
 }
-
-
 
 #descr-div {
     width: 100%;
@@ -147,6 +105,27 @@ header {
     margin: 5px;
 }
 
+#map {
+    width: 100%;
+    height: 42vh;
+    border: 1px solid black;
+    margin: 5px;
+    margin-top: 1rem; 
+}
+
+#search-results {
+    flex: 1 0 60%;
+    margin: 10px;
+    width: fit-content;
+    height: 90vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 45rem;
+}
+
+/* all 'wiki' id's correspond to generated  */
 #wiki-div {
     z-index: 100;
     position: absolute;
@@ -169,41 +148,18 @@ header {
     position: absolute;
 }
 
-#img-div {
-    display: none;
-}
-
-#place-img {
-    object-fit: cover;
-    /* width: 90%; */
-    height: 41.5vh;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /* margin: 5px; */
-}
-
 .place-img {
     object-fit: cover;
-    /* width: 90%; */
     height: 41.5vh;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* margin: 5px; */
 }
 
-#map {
-    width: 100%;
-    height: 42vh;
-    border: 1px solid black;
-    margin: 5px;
-    margin-top: 1rem; 
-}
 
+/* Attraction btns refers to the generated buttons housing the attractions */
 .attractions-btns {
   align-self: center;
-  background-color: #fff;
   background-image: none;
   background-position: 0 90%;
   background-repeat: repeat no-repeat;
@@ -217,10 +173,8 @@ header {
   cursor: pointer;
   display: inline-block;
   font-family: Neucha, sans-serif;
-  font-size: 1rem;
   line-height: 23px;
   outline: none;
-  padding: .75rem;
   text-decoration: none;
   transition: all 235ms ease-in-out;
   border-bottom-left-radius: 15px 255px;
@@ -230,6 +184,13 @@ header {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  width: 25rem;
+  padding: 1rem;
+  margin-top: .2rem;
+  margin-bottom: .2rem;
+  font-size: 1rem;
+  text-align: center;
+  background-color: rgb(255, 255, 255, 0.5);
 }
 
 .attractions-btns:hover {

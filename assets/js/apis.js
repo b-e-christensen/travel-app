@@ -42,12 +42,6 @@ async function searchFormHandler(event) {
     let lastSrc = place
     lastSrc.pic = place.photos[0].getUrl()
     localStorage.setItem('last-search', JSON.stringify(lastSrc))
-    // Show Divs and hide first visit 
-    // document.getElementById('first-visit').classList.add('invisible')
-    // document.getElementById('search-place-form').classList.remove('first-visit')
-    // writes image to DOM from search API
-    // let imgEl = document.getElementById('place-img')
-    // imgEl.src = place.photos[0].getUrl()
     writeCityWikiData(place)
     // Get lat and lng send to map init 
     let lat = place.geometry.location.lat()
@@ -133,7 +127,6 @@ function writeAtrProps(attraction) {
     imgEl = document.createElement('img')
     imgEl.src = attraction.photo
     imgEl.classList.add('place-img')
-    console.log(attraction)
     document.getElementById('search-results').children[attraction.iValue].after(imgEl)
     if (!attraction.text) {
         let aTag = document.createElement('a')
@@ -152,7 +145,6 @@ function writeAtrProps(attraction) {
             button.id = 'wiki-frame-btn'
             button.addEventListener('click', top.window.removeFrame)
             button.textContent = 'X'
-            // document.getElementById('frame-closer').classList.remove('invisible')
             document.querySelector('main').classList.add('blur')
             document.querySelector("body").appendChild(div)
             div.appendChild(frame)
@@ -172,7 +164,6 @@ function attractionsSelected(event) {
     attraction.iValue = indexValue
     // Adds the last clicked attraction to localStorage
     localStorage.setItem('attrHistory', JSON.stringify(attraction))
-    // as of right now this populates the background image. Thinking of adding a function that'll allow you to click the body and have the background image overlap the content of the page. 
     writeAtrProps(attraction)
 }
 
@@ -193,6 +184,5 @@ function writeAtrractions(attractionObj, place) {
 
 function removeFrame() {
     document.querySelector('body').removeChild(document.getElementById('wiki-div'))
-    // document.getElementById('frame-closer').classList.add('invisible')
     document.querySelector('main').classList.remove('blur')
 }

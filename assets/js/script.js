@@ -2,8 +2,6 @@
 function writeLastSearch(lastSearched) {
     let lat = lastSearched.geometry.location.lat
     let lon = lastSearched.geometry.location.lng
-    let imgEl = document.getElementById('place-img')
-    imgEl.src = lastSearched.pic
     // Creates map from apis.js 
     initialize(lat, lon)
 }
