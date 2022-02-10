@@ -17,31 +17,32 @@
     </header>
 
     <main id="app-main">
+
         <div id="left-column">
         </div>
         <div id="main-column">
+
             <form action="#" id="search-place-form">
                 <input type="text" id="search-place" placeholder="Search for a city">
                 <button type="submit" id="search-place-btn">Search</button>
             </form>
-        <div id="flex-row">
-            <div id="descr-and-map-container">
-            <div id="descr-div">
-                <p id="place-descr">Information on attractions will display here!</p>
+
+            <div id="flex-row">
+
+                <div id="descr-and-map-container">
+
+                    <div id="descr-div">
+                        <p id="place-descr">Information on attractions will display here!</p>
+                    </div>
+
+                    <div id="map">
+                    </div>
+                </div>
+
+                <div id="search-results">
+                </div>
             </div>
 
-            <div id="map">
-            </div> 
-            </div>
-
-            <div id="search-results">
-            </div>
-        </div>
-
-            <div id="img-div">
-                <img id="place-img">
-            </div>
-           
         </div>
         <div id="right-column">
         </div>
@@ -51,7 +52,7 @@
     <!-- Loads both maps and places google API / JS  https://developers.google.com/maps/documentation/javascript/places#place_details-->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgSOGWQ3tE9D1y5UFwCsxbEHusEg2_dLA&libraries=places&callback=initAutocomplete"></script>
-        <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

@@ -128,7 +128,6 @@ function writeAtrProps(attraction) {
     imgEl = document.createElement('img')
     imgEl.src = attraction.photo
     imgEl.classList.add('place-img')
-    console.log(attraction)
     document.getElementById('search-results').children[attraction.iValue].after(imgEl)
     if (!attraction.text) {
         let aTag = document.createElement('a')
