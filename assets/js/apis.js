@@ -143,12 +143,20 @@ function writeAtrProps(attraction) {
         aTag.addEventListener('click', wikiIFrame)
         document.getElementById("place-descr").appendChild(aTag)
         function wikiIFrame() {
+            let div = document.createElement('div')
             let frame = document.createElement('iframe')
+            let button = document.createElement('button')
             frame.setAttribute('src', 'https://en.wikipedia.org/wiki/' + attraction.name)
+            div.id = 'wiki-div'
             frame.id = 'wiki-frame'
-            document.getElementById('frame-closer').classList.remove('invisible')
+            button.id = 'wiki-frame-btn'
+            button.addEventListener('click', top.window.removeFrame)
+            button.textContent = 'X'
+            // document.getElementById('frame-closer').classList.remove('invisible')
             document.querySelector('main').classList.add('blur')
-            document.querySelector("body").appendChild(frame)
+            document.querySelector("body").appendChild(div)
+            div.appendChild(frame)
+            div.appendChild(button)
         }
     } else {
         document.getElementById('place-descr').textContent = attraction.text
@@ -184,7 +192,7 @@ function writeAtrractions(attractionObj, place) {
 }
 
 function removeFrame() {
-    document.querySelector('body').removeChild(document.getElementById('wiki-frame'))
-    document.getElementById('frame-closer').classList.add('invisible')
+    document.querySelector('body').removeChild(document.getElementById('wiki-div'))
+    // document.getElementById('frame-closer').classList.add('invisible')
     document.querySelector('main').classList.remove('blur')
 }
