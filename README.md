@@ -22,6 +22,7 @@ Still travel is a one stop visit for finding your next vacation destination. For
 
 <br>
 <br>
+
 * In this instance the user has searched for Berlin and we can see that some general information on the city, a map, and a list of attractions is generated. The user can click any of these attraction buttons and have an updated description of that place (if one isn't available through the Wikipedia text content API being used, a link to a relevant wikipedia article is put in it's place), an image of it placed below the button, and the recentering of the map onto the location of that attraction.
 
 <p align="right">(<a href="#about-the-project">back to top</a>)</p>
