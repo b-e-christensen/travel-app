@@ -2,6 +2,8 @@
 
 ## About The Project
 
+[Still Travel Site](https://b-e-christensen.github.io/travel-app/)
+
 Still travel is a one stop visit for finding your next vacation destination. For those interested in the attractions of any city in the world, this site serves as an invaluable resource to wade the waters of the art and culture one might experience upon their visit. As the title of the app suggests, it allows one to simply travel to a place while sitting still, potentially thousands of miles away. It needn't be just a device for planning a trip, but can serve as the vehicle for <i>taking</i> a trip. With images and descriptions of attractions all around the world, generated upon search, users can learn something about whatever city they can find the name of. 
 <br>
 <br>
