@@ -2,8 +2,12 @@ function initFormHandler(event) {
     event.preventDefault()
     let place = autocomplete.getPlace()
     // If invalid place
-    if (!place.geometry) {
+    if (!place || !place.geometry) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
+        document.getElementById('toast').style.display = "block";
+        setTimeout(function() {
+            document.getElementById('toast').style.display = "none";
+        }, 2200)
         return
     }
     // Format and add search to Localstoarage 

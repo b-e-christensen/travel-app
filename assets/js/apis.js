@@ -31,13 +31,20 @@ async function searchFormHandler(event) {
     attractionsAry = []
     attractionIndex = 0
     document.getElementById('search-results').innerHTML = ""
+    document.getElementById('toast').style.display = "none";
 
     let place = autocomplete.getPlace()
+
     // If invalid place
-    if (!place.geometry) {
+    if (!place || !place.geometry) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
+        document.getElementById('toast').style.display = "block";
+        setTimeout(function() {
+            document.getElementById('toast').style.display = "none";
+        }, 2200)
         return
     }
+
     // Format and add search to localStorage 
     let lastSrc = place
     lastSrc.pic = place.photos[0].getUrl()
@@ -48,6 +55,8 @@ async function searchFormHandler(event) {
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
     initialize(lat, lon)
+    autocomplete.set('place',null);
+    document.getElementById('search-place').value = ""
 }
 
 // https://developers.google.com/maps/documentation/javascript/places#place_search_requests init may and get nearby attractions

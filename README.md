@@ -40,7 +40,7 @@ This application is a client-side only serverless application.
 - CSS
 
 ### Third-party
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Bulma CSS Framework](https://bulma.io/)
 - [Google Maps and PLaces APIs](https://console.developers.google.com/apis/)
 - [Wikipedia API](https://www.mediawiki.org/wiki/API:Main_page)
 
@@ -87,5 +87,7 @@ Ben Christensen
 Chris D.
 
 [Github](https://github.com/anon123123123)
+
+Clayton Weber 
 
 <p align="right">(<a href="#about-the-project">back to top</a>)</p>
