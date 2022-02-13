@@ -2,8 +2,10 @@ function initFormHandler(event) {
     event.preventDefault()
     let place = autocomplete.getPlace()
     // If invalid place
-    if (!place.geometry) {
+    if (!place) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
+        console.log("toast")
+        document.getElementById("toast").style.display = "block"
         return
     }
     // Format and add search to Localstoarage 
@@ -16,6 +18,7 @@ function initFormHandler(event) {
 function checkforRedirect() {
     if (localStorage.getItem('last-search') || localStorage.attrHistory) {
         window.location.replace('../index.html')
+        <div id="toast" class="notification is-warning">Please use the autocomplete tool to continue</div>
     }
 }
 checkforRedirect()

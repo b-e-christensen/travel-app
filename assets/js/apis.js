@@ -31,13 +31,16 @@ async function searchFormHandler(event) {
     attractionsAry = []
     attractionIndex = 0
     document.getElementById('search-results').innerHTML = ""
+    document.getElementById('toast').style.display = "none";
 
     let place = autocomplete.getPlace()
     // If invalid place
-    if (!place.geometry) {
+    if (!place) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
+        document.getElementById('toast').style.display = "block";
         return
     }
+
     // Format and add search to localStorage 
     let lastSrc = place
     lastSrc.pic = place.photos[0].getUrl()
