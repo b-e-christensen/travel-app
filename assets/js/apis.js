@@ -33,8 +33,10 @@ async function searchFormHandler(event) {
     document.getElementById('search-results').innerHTML = ""
 
     let place = autocomplete.getPlace()
+
     // If invalid place
-    if (!place.geometry) {
+    if (!place || !place.geometry) {
+        console.log(place)
         document.getElementById('search-place').placeholder = 'Enter a place:'
         return
     }
@@ -48,6 +50,8 @@ async function searchFormHandler(event) {
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
     initialize(lat, lon)
+    autocomplete.set('place',null);
+    document.getElementById('search-place').value = ""
 }
 
 // https://developers.google.com/maps/documentation/javascript/places#place_search_requests init may and get nearby attractions
