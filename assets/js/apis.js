@@ -36,9 +36,12 @@ async function searchFormHandler(event) {
     let place = autocomplete.getPlace()
 
     // If invalid place
-    if (!place) {
+    if (!place || !place.geometry) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
         document.getElementById('toast').style.display = "block";
+        setTimeout(function() {
+            document.getElementById('toast').style.display = "none";
+        }, 2200)
         return
     }
 

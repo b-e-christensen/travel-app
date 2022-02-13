@@ -2,10 +2,12 @@ function initFormHandler(event) {
     event.preventDefault()
     let place = autocomplete.getPlace()
     // If invalid place
-    if (!place) {
+    if (!place || !place.geometry) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
-        console.log("toast")
-        document.getElementById("toast").style.display = "block"
+        document.getElementById('toast').style.display = "block";
+        setTimeout(function() {
+            document.getElementById('toast').style.display = "none";
+        }, 2200)
         return
     }
     // Format and add search to Localstoarage 
@@ -18,7 +20,6 @@ function initFormHandler(event) {
 function checkforRedirect() {
     if (localStorage.getItem('last-search') || localStorage.attrHistory) {
         window.location.replace('../index.html')
-        <div id="toast" class="notification is-warning">Please use the autocomplete tool to continue</div>
     }
 }
 checkforRedirect()
