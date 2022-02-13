@@ -34,6 +34,7 @@ async function searchFormHandler(event) {
     document.getElementById('toast').style.display = "none";
 
     let place = autocomplete.getPlace()
+
     // If invalid place
     if (!place) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
@@ -51,6 +52,8 @@ async function searchFormHandler(event) {
     let lat = place.geometry.location.lat()
     let lon = place.geometry.location.lng()
     initialize(lat, lon)
+    autocomplete.set('place',null);
+    document.getElementById('search-place').value = ""
 }
 
 // https://developers.google.com/maps/documentation/javascript/places#place_search_requests init may and get nearby attractions
