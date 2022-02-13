@@ -2,7 +2,7 @@ function initFormHandler(event) {
     event.preventDefault()
     let place = autocomplete.getPlace()
     // If invalid place
-    if (!place.geometry) {
+    if (!place || !place.geometry) {
         document.getElementById('search-place').placeholder = 'Enter a place:'
         return
     }
