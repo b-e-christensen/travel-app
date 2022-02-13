@@ -6,6 +6,7 @@
 * {
   margin: 0px;
   font-family: OpenSans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
 }
 
 header {
@@ -15,6 +16,11 @@ header {
   background-image: url(../images/headerimg.jpg);
   background-position: center;
   border-bottom: black 2px solid;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: bold;
 }
 
 #app-main {
